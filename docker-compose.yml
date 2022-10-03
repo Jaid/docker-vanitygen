@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+
+  main:
+    container_name: ubuntu-dev
+    build:
+      context: src
+    volumes:
+      - ./temp/volume/results:/results
