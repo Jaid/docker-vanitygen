@@ -42,7 +42,6 @@ function main() {
   arguments+=("$currency")
   arguments+=(-o) # output file
   arguments+=("$outputFile")
-
   if [[ -z $amount ]]; then
     arguments+=(-a)
     arguments+=("$amount")

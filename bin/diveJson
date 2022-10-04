@@ -3,4 +3,6 @@ set -o errexit
 
 here="$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-}")" &>/dev/null && pwd 2>/dev/null)"
 
-docker compose --file "$here/../docker-compose.yml" up --build "$@"
+distFolder="$here/../dist"
+mkdir --parents "$distFolder"
+bash "$here/dive" --json "$distFolder/dive.json" "$@"
