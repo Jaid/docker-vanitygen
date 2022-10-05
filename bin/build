@@ -7,3 +7,5 @@ distFolder="$here/../dist"
 imageName="$("$here/imageName")"
 mkdir --parents "$distFolder"
 docker build --tag "$imageName" --progress plain "$here/../src" "$@" |& tee "$distFolder/build.log"
+size=$(docker image inspect "$imageName" --format "{{ .Size }}" | numfmt --to=si --suffix=b)
+printf '%s size: %s\n' "$imageName" "$size"
