@@ -8,6 +8,7 @@ services:
       context: src
     environment:
       currency: BTC
-      prefix: 1Test 1test
+      prefix: 1Test 1test 1Jaid 1jaid
+      amount: 1
     volumes:
       - ./temp/volume/results:/results

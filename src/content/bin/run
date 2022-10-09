@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -o errexit
+set -o xtrace
 
 if [[ -z $currency ]]; then
   printf >&2 'Variable $currency not existing\n'
@@ -42,7 +43,7 @@ function main() {
   arguments+=("$currency")
   arguments+=(-o) # output file
   arguments+=("$outputFile")
-  if [[ -z $amount ]]; then
+  if [[ -n $amount ]]; then
     arguments+=(-a)
     arguments+=("$amount")
   else
