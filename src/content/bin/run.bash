@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -o errexit
-set -o xtrace
 
 if [[ -z $currency ]]; then
   printf >&2 'Variable $currency not existing\n'
