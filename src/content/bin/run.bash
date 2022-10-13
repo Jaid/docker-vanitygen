@@ -68,4 +68,4 @@ function main {
   ./vanitygen++ "${arguments[@]}"
 }
 
-main |& tee --append "$logFile"
+main 2> >(tee --append "$logFile")
