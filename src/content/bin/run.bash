@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -o pipefail
 
 if [[ -z $currency ]]; then
   printf >&2 'Variable $currency not existing\n'
@@ -32,7 +33,19 @@ for entry in "${entries[@]}"; do
   printf '%s\n' "$entry" >>$inputFile
 done
 
-function main() {
+function parseThreads {
+  prefix=$(cut --characters 1 <<<"$1")
+  if [[ $prefix = - ]]; then
+    ignoredCores=$(cut --characters 2- <<<"$1")
+    allCores=$(nproc)
+    chosenCores=$((allCores - ignoredCores))
+    printf %s "$chosenCores"
+  else
+    printf %s "$1"
+  fi
+}
+
+function main {
   declare -a arguments=()
   arguments+=(-v) # verbose
   arguments+=(-f) # pattern file
@@ -46,6 +59,11 @@ function main() {
     arguments+=("$amount")
   else
     arguments+=(-k)
+  fi
+  if [[ -n $threads ]]; then
+    arguments+=(-t)
+    parsedThreads=$(parseThreads "$threads")
+    arguments+=("$parsedThreads")
   fi
   ./vanitygen++ "${arguments[@]}"
 }
