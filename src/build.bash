@@ -11,7 +11,3 @@ curl --location --fail --show-error https://github.com/10gic/vanitygen-plusplus/
 tar -x -z -f vanitygen-plusplus.tar.gz
 mv vanitygen-plusplus-$repoSha vanitygen-plusplus
 make --directory vanitygen-plusplus
-mv vanitygen-plusplus/vanitygen++ .
-mv vanitygen-plusplus/base58prefix.txt .
-rm -rf vanitygen-plusplus
-rm vanitygen-plusplus.tar.gz
