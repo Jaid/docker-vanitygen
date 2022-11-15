@@ -9,7 +9,7 @@ services:
     environment:
       currency: BTC
       prefix: 1Test 1test 1Jaid 1jaid
-      amount: 10
+      amount: 1
       threads: 1
     volumes:
       - ./temp/volume/results:/results
