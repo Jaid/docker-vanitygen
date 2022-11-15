@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-declare -i pid
-pid=$(pgrep vanitygen++)
-declare -i cpuUsed
+pid=$(pgrep --uid "$userId" --exact vanitygen++)
 cpuUsed=$(ps --pid "$pid" -o pcpu h)
 if [[ $cpuUsed -lt 10 ]]; then
   exit 1
