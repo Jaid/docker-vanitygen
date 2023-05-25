@@ -12,6 +12,7 @@ jobs:
       contents: read
     uses: jaid/workflows/.github/workflows/testDocker.yml@main
     with:
+      dockerRunArgs: --env currency=BTC --env prefix=1Jaid --env amount=1 --network none
       test: |
         /BTC Address: 1/.test(stdout)
   pushDocker:
