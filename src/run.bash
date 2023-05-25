@@ -65,7 +65,7 @@ function main {
     parsedThreads=$(parseThreads "$threads")
     arguments+=("$parsedThreads")
   fi
-  ~/bin/vanitygen++ "${arguments[@]}"
+  ~/bin/vanitygen++ "${arguments[@]}" || true
 }
 
 main 2> >(tee --append "$logFile")
