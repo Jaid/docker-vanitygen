@@ -8,13 +8,28 @@ on:
         default: patch
         type: choice
         options:
-        - patch
-        - minor
-        - major
+          - patch
+          - minor
+          - major
 jobs:
-  job:
-    uses: jaid/workflows/.github/workflows/bumpDocker.yml@main
+  bump:
+    name: bump
+    permissions:
+      contents: write
+    uses: jaid/workflows/.github/workflows/bump.yml@main
     with:
       bumpAmount: ${{ inputs.bumpAmount }}
+  pushDocker:
+    name: pushDocker
+    permissions:
+      packages: write
+      contents: read
+    needs:
+      - bump
+    uses: jaid/workflows/.github/workflows/pushDocker.yml@main
+    with:
+      dockerHubUser: jaidchen
+      arch: linux/amd64,linux/arm64/v8
+      versionTag: ${{ needs.bump.outputs.newSemver }}
     secrets:
       dockerHubToken: ${{ secrets.dockerHubToken }}

@@ -1,5 +1,11 @@
-FROM jaidchen/ubuntu-builder:main AS build
+# syntax=docker/dockerfile:1
 
-FROM jaidchen/ubuntu:main
-COPY --from=build /build/vanitygen-plusplus/vanitygen++ $userHome
-COPY --from=build /build/vanitygen-plusplus/base58prefix.txt $userHome
+ARG builderTag=4.5.0
+ARG runnerTag=4.1.1
+
+FROM jaidchen/builder:$builderTag AS build
+
+FROM jaidchen/runner:$runnerTag
+
+COPY --from=build /build/vanitygen/bin $userHome/bin
+COPY --from=build /build/vanitygen/base58prefix.txt $userHome

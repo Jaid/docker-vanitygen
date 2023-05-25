@@ -2,7 +2,7 @@ version: "3.9"
 services:
 
   main:
-    container_name: vanitygenPlusplus-dev
+    container_name: vanitygen-plusplus-dev
     network_mode: none
     build:
       context: src
